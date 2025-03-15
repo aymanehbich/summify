@@ -1,0 +1,28 @@
+.main {
+  background-image: radial-gradient(
+    light-dark(var(--mantine-color-gray-1), var(--mantine-color-dark-6)) 2.2px,
+    transparent 1.5px
+  );
+  background-size: 19px 19px;
+  background-color: var(--mantine-color-body);
+}
+
+.dark {
+  @mixin dark {
+    display: none;
+  }
+
+  @mixin light {
+    display: block;
+  }
+}
+
+.light {
+  @mixin light {
+    display: none;
+  }
+
+  @mixin dark {
+    display: block;
+  }
+}
