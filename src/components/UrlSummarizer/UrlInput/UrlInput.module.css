@@ -1,0 +1,8 @@
+.accordionItem {
+  background-color: var(--mantine-color-body);
+}
+.actionIcon:disabled {
+  @mixin dark {
+    background-color: var(--mantine-color-dark-5);
+  }
+}
