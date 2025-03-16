@@ -1,0 +1,13 @@
+.accordionControl {
+  @media (max-width: $mantine-breakpoint-sm) {
+    width: 80%;
+  }
+}
+.center {
+  /* @media (max-width: $mantine-breakpoint-sm) {
+    width: 20%;
+  } */
+  @media (max-width: $mantine-breakpoint-sm) {
+    width: 20%;
+  }
+}
