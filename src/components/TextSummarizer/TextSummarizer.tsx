@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useLazySummarizeProvidedTextQuery } from "@/services/article";
 import { LoadingOverlay } from "@mantine/core";
 import { useForm } from "@mantine/form";
+import { useScrollIntoView } from "@mantine/hooks";
 import SummaryForm from "./SummaryForm/SummaryForm";
 import SummaryList from "./SummaryList/SummaryList";
 import SummaryCard from "./SummaryCard/SummaryCard";
@@ -14,6 +15,9 @@ interface Article {
 const TextSummarizer = () => {
   const [summaryData, setSummaryData] = useState<Article | null>(null);
   const [allSummaryData, setAllSummaryData] = useState<Article[]>([]);
+  const { scrollIntoView, targetRef } = useScrollIntoView<HTMLDivElement>({
+    offset: 70,
+  });
 
   const [triggerSummarize, { isFetching }] =
     useLazySummarizeProvidedTextQuery();
@@ -45,7 +49,8 @@ const TextSummarizer = () => {
           { title: data.title, summary: data.summary },
           ...allSummaryData,
         ];
-        setSummaryData({ title: data.title, summary: data.summary });
+        const newSummary = { title: data.title, summary: data.summary };
+        setSummaryData(newSummary);
         localStorage.setItem("summary", JSON.stringify(updatedAllArticles));
         setAllSummaryData(updatedAllArticles);
       }
@@ -55,6 +60,12 @@ const TextSummarizer = () => {
     }
     form.reset();
   };
+
+  useEffect(() => {
+    if (summaryData?.summary) {
+      scrollIntoView();
+    }
+  }, [summaryData?.summary, scrollIntoView]);
 
   return (
     <>
@@ -74,11 +85,15 @@ const TextSummarizer = () => {
       <SummaryForm
         onSubmit={handleSubmit}
         isFetching={isFetching}
-        form={form} // Pass the form object to SummaryForm
+        form={form}
       />
       {allSummaryData.length > 0 && <SummaryList articles={allSummaryData} />}
       {summaryData && summaryData.title && summaryData.summary && (
-        <SummaryCard title={summaryData.title} summary={summaryData.summary} />
+        <SummaryCard 
+          title={summaryData.title} 
+          summary={summaryData.summary} 
+          ref={targetRef}
+        />
       )}
     </>
   );
