@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
 import { useLazySummarizeProvidedTextQuery } from "@/services/article";
-import { LoadingOverlay } from "@mantine/core";
-import { useForm } from "@mantine/form";
-import { useScrollIntoView } from "@mantine/hooks";
+import { LoadingOverlay, Modal, Button, Group, Text } from "@mantine/core";
+import { useDisclosure, useScrollIntoView } from "@mantine/hooks";
 import SummaryForm from "./SummaryForm/SummaryForm";
 import SummaryList from "./SummaryList/SummaryList";
 import SummaryCard from "./SummaryCard/SummaryCard";
+import { notifications } from "@mantine/notifications";
+import { useForm } from "@mantine/form";
 
 interface Article {
   title: string;
@@ -18,6 +19,8 @@ const TextSummarizer = () => {
   const { scrollIntoView, targetRef } = useScrollIntoView<HTMLDivElement>({
     offset: 70,
   });
+  const [opened, { open, close }] = useDisclosure(false);
+  const [deleteTitle, setDeleteTitle] = useState<string | null>(null);
 
   const [triggerSummarize, { isFetching }] =
     useLazySummarizeProvidedTextQuery();
@@ -53,12 +56,42 @@ const TextSummarizer = () => {
         setSummaryData(newSummary);
         localStorage.setItem("summary", JSON.stringify(updatedAllArticles));
         setAllSummaryData(updatedAllArticles);
+
+        notifications.show({
+          title: "Success",
+          message: "Text summarized successfully!",
+          color: "green",
+        });
       }
       form.reset();
-    } catch (error) {
+    } catch (error: any) {
+      notifications.show({
+        title: "Error",
+        message: error.message || "Failed to process the request.",
+        color: "red",
+      });
       console.error("Error summarizing text:", error);
     }
-    form.reset();
+  };
+
+  const handleConfirmDelete = (title: string) => {
+    const updatedAllArticles = allSummaryData.filter(
+      (article) => article.title !== title
+    );
+    setAllSummaryData(updatedAllArticles);
+    localStorage.setItem("summary", JSON.stringify(updatedAllArticles));
+
+    if (summaryData?.title === title) {
+      setSummaryData(null);
+    }
+
+    close();
+
+    notifications.show({
+      title: "Success",
+      message: "Article deleted successfully!",
+      color: "green",
+    });
   };
 
   useEffect(() => {
@@ -87,11 +120,40 @@ const TextSummarizer = () => {
         isFetching={isFetching}
         form={form}
       />
-      {allSummaryData.length > 0 && <SummaryList articles={allSummaryData} />}
+      {allSummaryData.length > 0 && (
+        <>
+          <SummaryList
+            articles={allSummaryData}
+            onDelete={(title) => {
+              setDeleteTitle(title);
+              open();
+            }}
+          />
+          <Modal
+            opened={opened}
+            onClose={close}
+            title="Delete Article"
+            centered
+          >
+            <Text>Are you sure you want to delete this article?</Text>
+            <Group grow mt="sm">
+              <Button variant="outline" onClick={close}>
+                Cancel
+              </Button>
+              <Button
+                color="red"
+                onClick={() => deleteTitle && handleConfirmDelete(deleteTitle)}
+              >
+                Delete
+              </Button>
+            </Group>
+          </Modal>
+        </>
+      )}
       {summaryData && summaryData.title && summaryData.summary && (
-        <SummaryCard 
-          title={summaryData.title} 
-          summary={summaryData.summary} 
+        <SummaryCard
+          title={summaryData.title}
+          summary={summaryData.summary}
           ref={targetRef}
         />
       )}
