@@ -1,17 +1,18 @@
-import React, { useCallback } from "react";
+import React, { Suspense, useCallback } from "react";
 import { Link, Outlet } from "react-router-dom";
 import {
   ActionIcon,
   AppShell,
   Group,
+  Loader,
   UnstyledButton,
   useComputedColorScheme,
   useMantineColorScheme,
 } from "@mantine/core";
 import { CustomLogo } from "@/components/Logo/CustomLogo";
 import classes from "./MainLayout.module.css";
-import { IconMoon, IconSun } from "@tabler/icons-react";
 import { GithubIcon2 } from "@/components/Icons/GithubIcon2";
+import { IconMoon, IconSun } from "@tabler/icons-react";
 const MainLayout: React.FC = () => {
   const { setColorScheme } = useMantineColorScheme();
   const computedColorScheme = useComputedColorScheme("light", {
@@ -25,7 +26,7 @@ const MainLayout: React.FC = () => {
       <AppShell.Header className={classes.header}>
         <Group h="100%" px="md" justify="space-between">
           <UnstyledButton component={Link} to={"/"}>
-            <CustomLogo type="mark" size={44} />
+            <CustomLogo type="full" size={44} />
           </UnstyledButton>
           <Group gap="sm">
             <ActionIcon
@@ -53,7 +54,9 @@ const MainLayout: React.FC = () => {
         </Group>
       </AppShell.Header>
       <AppShell.Main className={classes.main}>
-        <Outlet />
+        <Suspense fallback={<Loader />}>
+          <Outlet />
+        </Suspense>
       </AppShell.Main>
     </AppShell>
   );
