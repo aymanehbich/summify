@@ -5,7 +5,8 @@ import {
   Center,
   Text,
 } from "@mantine/core";
-import { IconDots, IconTrash } from "@tabler/icons-react";
+import { IconTrash } from "@tabler/icons-react";
+import { Markdown } from "@/components/custom-components/Markdown";
 
 interface Article {
   title: string;
@@ -17,7 +18,9 @@ interface SummaryListProps {
   onDelete: (title: string) => void;
 }
 
-function AccordionControl(props: AccordionControlProps & { onDelete: () => void }) {
+function AccordionControl(
+  props: AccordionControlProps & { onDelete: () => void }
+) {
   return (
     <Center>
       <Accordion.Control {...props} />
@@ -52,7 +55,8 @@ const SummaryList = ({ articles, onDelete }: SummaryListProps) => {
               </Text>
             </AccordionControl>
             <Accordion.Panel>
-              <Text size="md">{text.summary}</Text>
+              {" "}
+              <Markdown>{text.summary}</Markdown>
             </Accordion.Panel>
           </Accordion.Item>
         ))}

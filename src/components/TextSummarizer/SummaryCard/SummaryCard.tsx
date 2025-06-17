@@ -1,6 +1,6 @@
 import { Card, Text, Title, Group } from "@mantine/core";
 import { forwardRef } from "react";
-
+import { Markdown } from "@/components/custom-components/Markdown";
 interface SummaryCardProps {
   title: string;
   summary: string;
@@ -21,10 +21,10 @@ const SummaryCard = forwardRef<HTMLDivElement, SummaryCardProps>(
             Summary:
           </Text>
         </Group>
-        <Title order={4} my="sm" ta="center" fw={700}>
+        <Title order={2} my="sm" ta="center" fw={700}>
           {title}
-        </Title>
-        <Text>{summary}</Text>
+        </Title>{" "}
+        <Markdown>{summary}</Markdown>
       </Card>
     );
   }

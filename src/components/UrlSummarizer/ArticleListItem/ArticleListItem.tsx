@@ -1,4 +1,5 @@
-import AccordionControl from "@/components/custom-components/AccordionControl";
+import AccordionControl from "@/components/custom-components/AccordionControl/AccordionControl";
+import { Markdown } from "@/components/custom-components/Markdown";
 import { Accordion, Text } from "@mantine/core";
 
 interface Article {
@@ -24,9 +25,11 @@ export const ArticleListItem: React.FC<ArticleListItemProps> = ({
         <Text size="sm" c="blue.9" lineClamp={1}>
           {article.url}
         </Text>
-      </AccordionControl>
+      </AccordionControl>{" "}
       <Accordion.Panel>
-        <Text size="md">{article.summary}</Text>
+        {/* <TypographyStylesProvider> */}
+        <Markdown>{article.summary}</Markdown>
+        {/* </TypographyStylesProvider> */}
       </Accordion.Panel>
     </Accordion.Item>
   );
