@@ -72,7 +72,37 @@ async function summarizeText(text: string): Promise<string> {
     messages: [
       {
         role: "user",
-        content: `Summarize this text concisely with a minimum of 10 lines: ${text}`,
+        content: `Please summarize the following article using markdown, **without** adding a "Summary" heading.
+
+- Start with a single, clear sentence that captures the essence of the text.
+- Follow with at least 10 bullet points highlighting the main ideas or key events.
+- Include a "**Key Takeaways**" section with 3 actionable or important points.
+- Optionally, add a "**Quote**" section with a relevant, impactful quote from the text.
+
+Format example:
+
+One concise sentence summarizing the article.
+
+- Bullet point 1
+- Bullet point 2
+- ...
+- Bullet point 10+
+
+### Key Takeaways
+1. Takeaway one
+2. Takeaway two
+3. Takeaway three
+
+### Quote (Optional)
+"A meaningful quote from the text."
+
+---
+
+Here is the article text:
+
+"""
+${text}
+"""`,
       },
     ],
     max_tokens: 1000,
@@ -96,16 +126,39 @@ async function generateTitleAndSummary(
     messages: [
       {
         role: "user",
-        content: `Given the following text, please provide:
-1. A concise, descriptive title (no more than 10 words, avoid special formatting)
-2. A comprehensive summary (minimum 10 lines)
+        content: `Please summarize the following article using markdown, **without** adding a "Summary" heading.
 
-Format your response exactly like this:
-TITLE: Your title here
-SUMMARY: Your summary here
+- Start with a single, clear sentence that captures the essence of the text.
+- Follow with at least 10 bullet points highlighting the main ideas or key events.
+- Include a "**Key Takeaways**" section with 3 actionable or important points.
+- Optionally, add a "**Quote**" section with a relevant, impactful quote from the text.
 
-Here's the text to analyze:
-${text}`,
+Format example:
+
+**Title:** A short title for the article.
+
+One concise sentence summarizing the article.
+
+- Bullet point 1
+- Bullet point 2
+- ...
+- Bullet point 10+
+
+### Key Takeaways
+1. Takeaway one
+2. Takeaway two
+3. Takeaway three
+
+### Quote (Optional)
+"A meaningful quote from the text."
+
+---
+
+Here is the article text:
+
+"""
+${text}
+"""`,
       },
     ],
     max_tokens: 1000,
@@ -115,22 +168,22 @@ ${text}`,
   });
 
   if (!response || !response.choices || response.choices.length === 0) {
-    throw new Error("Failed to generate title and summary for the text.");
+    throw new Error("Failed to generate structured summary.");
   }
 
   const content = response.choices[0].message.content || "";
 
-  // Parse the response using regex
-  const titleMatch = content.match(/TITLE:\s*(.*?)(?=\nSUMMARY:|$)/s);
-  const summaryMatch = content.match(/SUMMARY:\s*(.*)/s);
+  // Extract the title from the first "**Title:**" line (if present)
+  const titleMatch = content.match(/^\*\*Title:\*\*\s*(.+)$/m);
+  const title = titleMatch ? titleMatch[1].trim() : "Untitled Document";
 
-  let title = titleMatch ? titleMatch[1].trim() : "Untitled Document";
-  let summary = summaryMatch ? summaryMatch[1].trim() : content.trim();
+  // Remove the title line from content to get the summary
+  const summary = content.replace(/^\*\*Title:\*\*\s*.+$/m, "").trim();
 
-  // Remove unwanted characters from title
-  title = title.replace(/\*\*/g, "").replace(/["'*]/g, "").trim();
-
-  return { title, summary };
+  return {
+    title: title.replace(/["'*]/g, "").trim(),
+    summary: summary.trim(),
+  };
 }
 
 // Helper function to handle errors
