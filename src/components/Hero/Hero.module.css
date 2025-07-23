@@ -1,13 +1,20 @@
 .wrapper {
-  position: relative;
+  /* position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center; */
+
   padding-top: 80px;
   padding-bottom: 90px;
   /* background-image: radial-gradient(
     light-dark(var(--mantine-color-gray-1), var(--mantine-color-dark-5)) 2.2px,
     transparent 1.5px
-  );
-  background-size: 17px 17px;
-  background-color: var(--mantine-color-body); */
+  ); */
+  /* background-size: 17px 17px; */
+  /* background-color: var(--mantine-color-body); */
+  /* height: calc(
+    100vh - (var(--app-shell-header-height) + (var(--app-shell-padding) * 2))
+  ); */
 
   @media (max-width: $mantine-breakpoint-sm) {
     padding-top: 80px;

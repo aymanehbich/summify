@@ -25,8 +25,8 @@ const MainLayout: React.FC = () => {
     <AppShell padding="md" header={{ height: 60 }}>
       <AppShell.Header className={classes.header}>
         <Group h="100%" px="md" justify="space-between">
-          <UnstyledButton component={Link} to={"/"}>
-            <CustomLogo type="full" size={44} />
+          <UnstyledButton display="flex" component={Link} to={"/"}>
+            <CustomLogo type="full" width="auto" height={35} />
           </UnstyledButton>
           <Group gap="sm">
             <ActionIcon

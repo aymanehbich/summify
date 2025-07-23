@@ -1,4 +1,4 @@
-import React from "react";
+import React, { SVGProps } from "react";
 import { rem, useMantineTheme } from "@mantine/core";
 
 // Define props for CustomLogo
@@ -9,53 +9,48 @@ export interface CustomLogoProps extends React.HTMLAttributes<HTMLDivElement> {
 }
 
 // CustomLogo component
-export function CustomLogo({
-  size = 30,
-  type = "full",
-  text = "Summify",
-  ...others
-}: CustomLogoProps) {
-  const theme = useMantineTheme(); // Access the Mantine theme
-  const primaryColor = theme.colors[theme.primaryColor][7]; // Get the primary color
-
-  // Calculate text size based on logo size (relative to 30px default size)
-  const textSize = typeof size === "number" ? rem(size * 0.45) : rem(30 * 0.5);
-
+export function CustomLogo(props: SVGProps<SVGSVGElement>) {
   return (
-    <div style={{ display: "flex", alignItems: "center" }} {...others}>
-      {/* Inline SVG Logo */}
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        viewBox="0 0 48 48"
-        width={size}
-        height={size}
-      >
-        <polygon
-          fill={primaryColor} // Use the theme's primary color
-          points="26,35.164 24.004,36.293 22,35.159 22,17.476 17,20.311 17,38.07 24,42.039 31,38.075 31,20.264 26,17.428"
-        />
-        <polygon
-          fill={primaryColor} // Use the theme's primary color
-          points="24,5.995 8,14.979 8,32.981 13,35.808 13,17.964 24.004,11.742 35,17.959 35,35.813 40,32.986 40,15.042"
-        />
-      </svg>
-
-      {/* Show text only when type="full" */}
-      {type === "full" && (
-        <span
-          className="mantine-visible-from-md"
-          style={{
-            color: primaryColor, // Use the theme's primary color
-            fontSize: textSize,
-            fontWeight: "bold",
-            userSelect: "none", // Prevent text selection
-            cursor: "pointer",
-            // marginLeft: rem(8), // Add some spacing between the logo and text
-          }}
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      xmlnsXlink="http://www.w3.org/1999/xlink"
+      data-name="\u02DC\xE0\xF0_1"
+      viewBox="0 0 950 226"
+      {...props}
+    >
+      <defs>
+        <linearGradient
+          id="a"
+          x1={-51.27}
+          x2={174.52}
+          y1={112.77}
+          y2={112.77}
+          gradientUnits="userSpaceOnUse"
         >
-          {text} {/* Render the dynamic text */}
-        </span>
-      )}
-    </div>
+          <stop offset={0} stopColor="#40c057" />
+          <stop offset={1} stopColor="#fab005" />
+        </linearGradient>
+        <linearGradient
+          xlinkHref="#a"
+          id="b"
+          x1={263.65}
+          x2={949.97}
+          y1={112.77}
+          y2={112.77}
+        />
+      </defs>
+      <path
+        d="m98.53 84.47 49 28.31-49 28.3Zm98.06 0V27.86l-49-28.31-49 28.31ZM147.56 226l49-28.31v-56.61l-98.03 56.61ZM.48 141.08l49 28.31V56.16l-49 28.31Z"
+        style={{
+          fill: "url(#a)",
+        }}
+      />
+      <path
+        d="m263.65 124.13 30.15-5.43q3.79 12.8 19.53 12.79 12.26 0 12.25-6.51a6 6 0 0 0-2.83-5.31c-1.88-1.26-5.26-2.39-10.11-3.37q-27.84-5.3-35.74-13.94a28.93 28.93 0 0 1-7.9-20.23 31.67 31.67 0 0 1 11.36-24.89q11.36-9.93 32.67-9.93 32.33 0 42.72 26l-26.9 8.14q-4.18-10.62-17-10.62-10.62 0-10.62 6.59a5.21 5.21 0 0 0 2.4 4.57q2.42 1.64 9.31 3.1 19 4 27 7.1a29.11 29.11 0 0 1 13.33 10.58 29.59 29.59 0 0 1 5.34 17.65q0 16-13 26t-34.18 10q-38.71-.04-47.78-32.29ZM452 75.91v78.84h-28.6V141.8q-6.28 14.58-24.49 14.58-11.25 0-17.41-6.24t-6.16-17.87V75.91h30.93v49.62q0 4.65 1.28 6.55t5 1.89a8.16 8.16 0 0 0 6.43-2.82c1.66-1.89 2.48-4.54 2.48-8V75.91Zm141.13 78.84h-30v-49.3q0-5-1.44-6.94t-5.08-2q-8.67 0-8.68 12.64v45.58h-29.7v-49.3q0-9.43-7.23-9.43-7.53 0-7.52 9.46v49.3h-29.82V75.91h27.75v10.62q7.44-12.24 21.59-12.24 15.27 0 22.17 12.24 7.68-12.24 23.56-12.24a27.4 27.4 0 0 1 13.38 3.17 19.86 19.86 0 0 1 8.37 8.18q2.6 5 2.59 15.47Zm141.21 0h-30v-49.3q0-5-1.43-6.94t-5.08-2q-8.68 0-8.68 12.64v45.58h-29.71v-49.3q0-9.47-7.29-9.46-7.51 0-7.52 9.46v49.3h-29.76V75.91h27.75v10.62q7.44-12.24 21.63-12.24 15.27 0 22.17 12.24 7.67-12.24 23.58-12.24a27.36 27.36 0 0 1 13.37 3.17 19.94 19.94 0 0 1 8.38 8.18q2.6 5 2.59 15.47ZM787 45.6v24.5h-30.92V45.6Zm0 30.31v78.84h-30.92V75.91ZM842 96v58.76h-29.13V96h-11.78V75.91h11.78a88.43 88.43 0 0 1 .85-14.45 20.25 20.25 0 0 1 4.26-9 21.59 21.59 0 0 1 9.15-6.59q5.73-2.3 15.43-2.29a117.8 117.8 0 0 1 19.92 1.63v20.24a89.83 89.83 0 0 0-11-1 15 15 0 0 0-6.66 1.47q-3 1.49-3 7.21v2.79h20.16V96Zm108-20.09-31 85.43q-3.57 9.69-10.23 15.15T888.26 182q-3.33 0-15.5-.7v-21.98a73.77 73.77 0 0 0 11.16.93q13.33 0 13.34-5.89a16.1 16.1 0 0 0-1.32-5.35l-28.3-73.1h33.09l13 42.07 13.6-42.07Z"
+        style={{
+          fill: "url(#b)",
+        }}
+      />
+    </svg>
   );
 }
