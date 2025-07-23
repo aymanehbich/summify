@@ -1,5 +1,4 @@
 import React, { SVGProps } from "react";
-import { rem, useMantineTheme } from "@mantine/core";
 
 // Define props for CustomLogo
 export interface CustomLogoProps extends React.HTMLAttributes<HTMLDivElement> {
