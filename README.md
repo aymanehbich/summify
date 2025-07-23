@@ -1,77 +1,104 @@
 # 📄 Summify – AI-Powered Article and Text Summarization
 
-**Summify** is a modern web application that simplifies content consumption by generating concise summaries of articles from URLs or directly from pasted text. It helps users save time and boost productivity by extracting key points from lengthy content.
+**Summify** is a modern React.js web application that transforms how you consume content by generating intelligent, structured summaries of articles and text. Built with **TypeScript** and **Mantine UI**, it offers a seamless experience for extracting key insights from lengthy content — saving you time and boosting productivity.
 
 ---
 
-## 🧭 Overview
+## 🚀 Purpose
 
-In today's information-rich environment, readers often struggle with information overload. **Summify** addresses this challenge by providing AI-generated summaries that capture the essential information from articles and text, allowing users to quickly grasp the core content without reading entire pieces.
+In today’s information-rich environment, **Summify** solves the problem of content overload. It provides **AI-generated summaries** that capture essential insights from any article or piece of text.
+
+Whether you're:
+
+- 📚 A student processing research,
+- 💼 A professional staying updated, or
+- 🧠 Anyone seeking quick insights,
+
+**Summify** helps you **grasp core ideas** without reading full content.
 
 ---
 
 ## ✨ Features
 
-- 🔗 **Dual Summarization Methods**: Summarize content via URL or by pasting text directly  
-- 🕘 **Article History**: Save and access previously summarized articles  
-- 📝 **Markdown Rendering**: Beautifully formatted summaries with bullet points, highlights, and sections  
-- 🌗 **Light/Dark Mode**: Toggle between themes for comfortable reading  
-- 🔍 **Copy URL Functionality**: Easily copy article URLs to clipboard  
-- 📱 **Responsive Design**: Optimized for both desktop and mobile  
-- ⚡ **Lazy Loading**: Load components only when needed for better performance  
+- 🔗 **Dual Input**: Summarize via article URL or direct text input
+- 🤖 **AI-Powered**: GPT-4o integration for intelligent summarization
+- 📝 **Structured Output**: Markdown-formatted summaries with:
+  - Bullet points
+  - Key takeaways
+  - Notable quotes
+- 🌗 **Modern UI**: Built with Mantine components and clean UX
+- 📱 **Mobile Ready**: Fully responsive design for all devices
+- ⚡ **Optimized Performance**: Lazy loading + efficient state handling
+- 📋 **Copy to Clipboard**: Quickly share URLs and summaries
+- 🔔 **Real-Time UX Feedback**: Loading states & toast notifications
 
 ---
 
 ## 🛠️ Tech Stack
 
-- **Frontend Framework**: React.js (v19) with modern hooks and functional components  
-- **Build Tool**: Vite for fast development and optimized builds  
-- **Styling**: Mantine UI (v7) + CSS Modules  
-- **State Management**: Redux Toolkit + RTK Query for API handling  
-- **Routing**: React Router (v7)  
-- **Markdown Rendering**: React Markdown  
-- **Icons**: Tabler Icons  
-- **HTTP Client**: Axios  
-- **Notifications**: Mantine notifications  
+### 🖥️ Frontend
+
+- **React 19** with **TypeScript**
+- **Vite** – lightning-fast build & dev server
+- **Mantine UI v7** – modern component library
+- **Redux Toolkit** + **RTK Query** – state and API management
+- **React Router v7** – seamless routing
+- **React Markdown** – render structured summaries
+
+### ⚙️ Backend & APIs
+
+- **Flask API** (deployed on Vercel) – for article extraction
+- **Azure AI Inference (OpenAI GPT-4o)** – for summarization
+- **Extractus** – for article content parsing
+
+### 🧰 Development Tools
+
+- **TypeScript** – strong typing
+- **PostCSS** – with Mantine preset
+- **CSS Modules** – scoped component styling
+- **Tabler Icons** – UI icons
 
 ---
 
-## 🔌 API Integrations
+## 🔧 Dependencies
 
-- **Article Extraction**: Flask backend API for extracting article content  
-- **AI Summarization**: OpenAI GPT-4o integration via Azure Inference API  
-- **Structured Output**: Clean and organized summaries with takeaways and highlights  
+### Core
 
----
+- React
+- Redux Toolkit
+- React Router
+- Mantine
+- React Markdown
+- Extractus
 
-## 💡 User Experience
+### Dev
 
-Summify features a clean, intuitive interface with a focus on readability and ease of use. The tabbed interface allows users to seamlessly switch between URL and text summarization. Real-time feedback (via loading states and notifications) enhances interactivity. Its responsive layout and dark/light mode make it accessible and pleasant across devices and user preferences.
-
----
-
-## 🎯 Target Audience
-
-- Students needing to digest research articles quickly  
-- Professionals staying updated on industry news  
-- Researchers processing multiple sources of information  
-- Anyone who wants key points from long content without reading it all  
+- TypeScript
+- PostCSS
+- Vite
+- CSS Modules
+- Tabler Icons
 
 ---
 
-## 🚀 Future Roadmap
+## 🚀 Getting Started
 
-- ✅ User authentication for cloud-synced summaries  
-- 🧩 Browser extension for one-click summarization  
-- ✏️ Customization for summary length and tone  
-- 📤 Export to PDF and other formats  
-- 🌐 Multi-language support  
+### 🔍 Prerequisites
 
----
+- **Node.js** `v18+`
+- **Yarn** `v4.7.0+` (recommended)
+- **Git**
 
-## 🧪 Getting Started
+### 🛠️ Installation
 
-Visit [Summify](#) to try the live application or contribute to the project.
+```bash
+# Clone the repo
+git clone https://github.com/yourusername/summify.git
+cd summify
 
----
+# Install dependencies
+yarn install
 
+# Create a .env file with your keys (example below)
+touch .env
+```
