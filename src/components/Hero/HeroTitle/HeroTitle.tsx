@@ -4,14 +4,14 @@ import classes from "./HeroTitle.module.css";
 interface HeroTitleProps {
   title: string;
   highlight: string;
-  me?: string; // New subtitle prop
+  // me?: string; // New subtitle prop
   description: string;
 }
 
 export const HeroTitle: React.FC<HeroTitleProps> = ({
   title,
   highlight,
-  me,
+  // me,
   description,
 }) => {
   return (
