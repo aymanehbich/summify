@@ -11,7 +11,7 @@ import {
 } from "@mantine/core";
 import { CustomLogo } from "@/components/Logo/CustomLogo";
 import classes from "./MainLayout.module.css";
-import { GithubIcon2 } from "@/components/Icons/GithubIcon2";
+// import { GithubIcon2 } from "@/components/Icons/GithubIcon2";
 import { IconMoon, IconSun } from "@tabler/icons-react";
 const MainLayout: React.FC = () => {
   const { setColorScheme } = useMantineColorScheme();
