@@ -27,9 +27,9 @@ export const HeroTitle: React.FC<HeroTitleProps> = ({
         >
           {highlight}
         </Text>
-        <Text component="span" size="sm" c="dimmed">
+        {/* <Text component="span" size="sm" c="dimmed">
           by {me}
-        </Text>
+        </Text> */}
       </Title>
 
       <Container p={0} size={600}>
