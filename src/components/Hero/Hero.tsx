@@ -10,7 +10,6 @@ const Hero = () => {
         <HeroTitle
           title="Summarize Articles with"
           highlight="Summify"
-          me="hbich aymane"
           description="Summify quickly summarizes articles, extracting key points to save you time and boost productivity."
         />
 
