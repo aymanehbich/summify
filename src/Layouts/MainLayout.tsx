@@ -29,7 +29,7 @@ const MainLayout: React.FC = () => {
             <CustomLogo type="full" width="auto" height={35} />
           </UnstyledButton>
           <Group gap="sm">
-            <ActionIcon
+            {/* <ActionIcon
               variant="default"
               size={35}
               radius="md"
@@ -39,7 +39,7 @@ const MainLayout: React.FC = () => {
               target="_blank"
             >
               <GithubIcon2 size={22} />
-            </ActionIcon>
+            </ActionIcon> */}
             <ActionIcon
               onClick={toggleColorScheme}
               variant="default"
